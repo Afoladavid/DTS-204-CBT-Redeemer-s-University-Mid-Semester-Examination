@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>DTS 204 • Examination Instructions | Redeemer's University</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fb;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .instruction-card {
+            background: white;
+            border-radius: 28px;
+            max-width: 700px;
+            width: 100%;
+            padding: 32px 28px 24px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .instruction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a227, #e5c85c, #c9a227);
+            border-radius: 28px 28px 0 0;
+        }
+
+        .official-header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .official-header strong {
+            display: block;
+            font-size: 1.4rem;
+            color: #0b1a2f;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .official-header p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #1e293b;
+            margin: 8px 0 0;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #0b1a2f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .instruction-list {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .instruction-list li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            color: #334155;
+            align-items: flex-start;
+        }
+
+        .instruction-list i {
+            color: #c9a227;
+            font-size: 1.2rem;
+            margin-top: 2px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 0;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            border: 1.5px solid #b4941e;
+            color: #0b1a2f;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #132742, #1e3a5f);
+            color: white;
+            box-shadow: 0 10px 18px rgba(9, 30, 66, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 500px) {
+            .instruction-card {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="instruction-card">
+        <div class="official-header">
+            <strong>REDEEMER’S UNIVERSITY</strong>
+            <p>
+                PMB 230 EDE, OSUN STATE, NIGERIA<br>
+                FACULTY: NATURAL SCIENCES<br>
+                DEPARTMENT: MATHEMATICAL SCIENCES<br>
+                COURSE CODE: DTS 204 &nbsp;&nbsp; COURSE UNIT: 3 UNITS<br>
+                TITLE: STATISTICAL COMPUTING INFERENCE AND MODELLING<br>
+                SESSION: 2025/2026 &nbsp;&nbsp; SEMESTER: SECOND SEMESTER<br>
+                <span style="color:#c9a227; font-weight:700;">MID-SEMESTER EXAMINATION (25%)</span>
+            </p>
+        </div>
+        <h2>EXAMINATION INSTRUCTIONS</h2>
+        <ul class="instruction-list">
+            <li> <span><strong>Time Allowed:</strong> 30 minutes (strict countdown).</span></li>
+            <li></i> <span><strong>60 Objective Questions</strong> – attempt all.</span></li>
+            <li></i> <span><strong>Scoring:</strong> Your score is calculated as (Your Marks ÷ 60) × 25 to obtain your
+                    CA contribution out of 25%.</span></li>
+            <li></i> <span><strong>Screen Monitoring:</strong> Do not leave the exam screen. Suspicious activity may
+                    flag your attempt.</span></li>
+            <li></li></i> <span><strong>Result Privacy:</strong> Your score is shown once after submission. Answers are
+                not displayed to prevent cheating.</span></li>
+            <li></li> <span><strong>Single Attempt:</strong> No student is allowed to take this test twice. Once
+                submitted, the exam is closed.</span></li>
+
+        </ul>
+        <div class="button-group">
+            <button class="btn btn-outline-gold" id="cancelBtn"> Back to Dashboard</button>
+            <button class="btn btn-primary" id="proceedBtn"></i> I Understand, Start Exam</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCHRaW_jFOYHRL2QL0Me5ojE5XBuc93IA",
+            authDomain: "dts204-cbt.firebaseapp.com",
+            projectId: "dts204-cbt",
+            storageBucket: "dts204-cbt.firebasestorage.app",
+            messagingSenderId: "780943903110",
+            appId: "1:780943903110:web:af6671202e87177c1f8407"
+        };
+
+        let db;
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+        } catch (e) {
+            console.warn("Firebase not available, running offline");
+        }
+
+        const student = JSON.parse(sessionStorage.getItem('cbt_student'));
+
+        // If no student session or exam already submitted, return to dashboard
+        if (!student || student.examStatus === 'submitted') {
+            window.location.href = 'dashboard.html';
+        }
+
+        document.getElementById('cancelBtn').addEventListener('click', () => {
+            window.location.href = 'dashboard.html';
+        });
+
+        document.getElementById('proceedBtn').addEventListener('click', async () => {
+            // ---- CHECK EXAM ACTIVATION (ADMIN TOGGLE) ----
+            if (db) {
+                const configSnap = await getDoc(doc(db, 'config', 'examStatus'));
+                if (configSnap.exists() && configSnap.data().active !== true) {
+                    alert('The examination has not been activated by the administrator yet. Please wait.');
+                    return;
+                }
+            }
+
+            // Mark exam as started (if not already)
+            if (student.examStatus !== 'started') {
+                student.examStatus = 'started';
+                student.startedAt = new Date().toISOString();
+                sessionStorage.setItem('cbt_student', JSON.stringify(student));
+
+                if (db && student.matric) {
+                    try {
+                        const docRef = doc(db, 'students', student.matric.replace(/\//g, '_'));
+                        await updateDoc(docRef, {
+                            examStatus: 'started',
+                            startedAt: student.startedAt
+                        });
+                    } catch (e) {
+                        console.warn('Firebase update failed', e);
+                    }
+                }
+            }
+            window.location.href = 'exam.html';
+        });
+    </script>
+</body>
+
+</html>
